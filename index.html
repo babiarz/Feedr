@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Feedr @ GA</title>
+      <link rel="stylesheet" href="styles/normalize.css" media="screen" charset="utf-8">
+      <link rel="stylesheet" href="styles/html5bp.css" media="screen" charset="utf-8">
+      <link rel="stylesheet" href="styles/style.css" media="screen" charset="utf-8">
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <header>
+          <section class="container">
+            <a href="#"><h1>Feedr</h1></a>
+            <nav>
+              <ul>
+                <li><a href="#">News Source: <span>Source Name</span></a>
+                  <ul>
+                      <li><a href="#" id="diggArticleList">Digg</a></li>
+                      <li><a href="#" id="redditArticleList">Reddit</a></li>
+                      <li><a href="#" id="catArticleList">Cat News</a></li>
+                      <li><a href="#" id="allArticleList">Show All</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <section id="search">
+                <input type="text" name="name" value="">
+                <a href="#"><img src="images/search.png" alt="" /></a>
+              </section>
+            </nav>
+            <div class="clearfix"></div>
+          </section>
+        </header>
+        <div id="popUp" class="loader hidden">
+         
+        </div>
+
+        <section id="main" class="container">
+   			<div id="error-message" class="hidden">
+   				
+   			</div>
+        </section>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+        <script src="js/app.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+        <script id="newArticle" type="text/x-handlebars-template">
+             <article class="article diggContainer">
+              <section class="featuredImage">
+                <img src="{{content.media.images.5.url}}" alt="" />
+             </section>
+              <section class="articleContent">
+                <a href="#" class="showPopUp"><h3>{{content.title}}</h3></a>
+                  <h6>{{content.tags.0.name}}  |  <a href="{{content.url}}">View source</a></h6>
+              </section>
+              <section class="impressions">
+                {{diggs.count}}
+              </section>
+              <div class="clearfix"></div>
+            </article>
+        </script>
+
+        <script id="redditArticle" type="text/x-handlebars-template">
+            <article class="article redditContainer">
+                <section class="featuredImage">
+                    <img src="http://loremflickr.com/320/240/cat" alt="" />
+                </section>
+                <section class="articleContent">
+                    <a href="#" class="showPopUp"><h3>{{data.title}}</h3></a>
+                  <h6>{{data.subreddit}}  |  <a href="{{data.url}}">View source</a></h6>
+              </section>
+              <section class="impressions">
+                {{data.score}}
+              </section>
+              <div class="clearfix"></div>
+            </article>
+        </script>
+
+         <script id="diggArticlePopUp"  type="text/x-handlebars-template">
+        	<a href="#" class="closePopUp">X</a>
+          	<div class="container">
+            	<iframe src="{{content.url}}" style="height:100%;"></iframe>
+          	</div>
+        </script>
+
+         <script id="redditArticlePopUp"  type="text/x-handlebars-template">
+        	<a href="#" class="closePopUp">X</a>
+          	<div class="container">
+            	<iframe src="{{data.url}}" style="height:100%;"></iframe>
+          	</div>
+        </script>
+
+    </body>
+</html>
